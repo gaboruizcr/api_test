@@ -4,7 +4,7 @@ import org.testng.annotations.*;
 
 public class Base {
 
-    protected int articleId;
+    protected int postId;
 
     @Parameters("host")
     @BeforeSuite(alwaysRun = true)
@@ -17,14 +17,14 @@ public class Base {
 
     // before groups
 
-    @BeforeMethod(groups = "useArticle")
-    void createArticle(){
-        articleId = RequestHelpers.createRandomArticleAndGetID();
+    @BeforeMethod(groups = "usePost")
+    void createPost(){
+        postId = RequestHelpers.createRandomPostAndGetID();
     }
 
-    @AfterMethod(groups = "useArticle")
-    void deleteArticle(){
-        RequestHelpers.cleanUpArticle(articleId);
+    @AfterMethod(groups = "usePost")
+    void deletePost(){
+        RequestHelpers.cleanUpPost(postId);
     }
 
 }

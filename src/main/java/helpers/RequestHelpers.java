@@ -4,7 +4,7 @@ import Specififactions.RequestSpecifications;
 import Specififactions.ResponseSpecifications;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import model.Article;
+import model.Post;
 import model.User;
 import org.hamcrest.Matchers;
 
@@ -29,21 +29,21 @@ public class RequestHelpers {
         return TOKEN;
     }
 
-    public static int createRandomArticleAndGetID () {
-        Article randomArticle = new Article("randome", "randome");
+    public static int createRandomPostAndGetID () {
+        Post randomPost = new Post("random", "random");
        Response response = given().spec(RequestSpecifications.useJWTAuthentication())
-                .body(randomArticle)
+                .body(randomPost)
                 .when()
                 .log().all()
-                .post("/v1/article");
+                .post("/v1/post");
 
         JsonPath jsonPath = response.jsonPath();
         return jsonPath.get("id");
     }
 
-    public static void cleanUpArticle (int id) {
+    public static void cleanUpPost (int id) {
         given().spec(RequestSpecifications.useJWTAuthentication())
-                .delete("/v1/article/"+ id);
+                .delete("/v1/post/"+ id);
     }
 
 }
