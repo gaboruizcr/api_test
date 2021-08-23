@@ -4,6 +4,7 @@ import Specififactions.RequestSpecifications;
 import Specififactions.ResponseSpecifications;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import model.Comments;
 import model.Post;
 import model.User;
 import org.hamcrest.Matchers;
@@ -36,6 +37,18 @@ public class RequestHelpers {
                 .when()
                 .log().all()
                 .post("/v1/post");
+
+        JsonPath jsonPath = response.jsonPath();
+        return jsonPath.get("id");
+    }
+
+    public static int createRandomCommentAndGetID (int id) {
+        Comments randomComment = new Comments("random", "random");
+        Response response = given().spec(RequestSpecifications.userBasicAuthentication())
+                .body(randomComment)
+                .when()
+                .log().all()
+                .post("/v1/comment/" + id);
 
         JsonPath jsonPath = response.jsonPath();
         return jsonPath.get("id");

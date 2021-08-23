@@ -4,15 +4,16 @@
 
     <parameter name="host" value="https://api-coffee-testing.herokuapp.com"></parameter>
 
-    <test name="AuthenticationTests">
+
+    <test name="PostTests">
         <classes>
-            <class name="AuthenticationTests"></class>
+            <class name="PostTests"></class>
         </classes>
     </test>
 
-    <test name="OtherTests">
+    <test name="CommentsTests">
         <classes>
-            <class name="MiscellaneousTests"></class>
+            <class name="CommentsTests"></class>
         </classes>
     </test>
 </suite>

@@ -29,4 +29,12 @@ public class RequestSpecifications {
 
         return builder.build();
     }
+
+    public static RequestSpecification userFakeBasicAuthentication() {
+        RequestSpecBuilder builder = new RequestSpecBuilder();
+        builder.addHeader("Authorization", "Basic wrongAuthorization=");
+
+        return builder.build();
+    }
+
 }

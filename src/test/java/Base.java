@@ -5,6 +5,9 @@ import org.testng.annotations.*;
 public class Base {
 
     protected int postId;
+    protected int commentId;
+    protected int invalidId = 200;
+
 
     @Parameters("host")
     @BeforeSuite(alwaysRun = true)
@@ -20,6 +23,7 @@ public class Base {
     @BeforeMethod(groups = "usePost")
     void createPost(){
         postId = RequestHelpers.createRandomPostAndGetID();
+        commentId = RequestHelpers.createRandomCommentAndGetID(postId);
     }
 
     @AfterMethod(groups = "usePost")
