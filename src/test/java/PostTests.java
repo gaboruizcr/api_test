@@ -82,7 +82,7 @@ public class PostTests extends Base{
 
         Response response = given().spec(RequestSpecifications.useJWTAuthentication())
                 .when()
-                .get("/v1/post/" + postId + 12);
+                .get("/v1/post/" + (postId * invalidId));
 
         assertThat(response.path("Message"), Matchers.equalTo("Post not found"));
         assertThat(response.path("error"), Matchers.equalTo("sql: no rows in result set"));
@@ -112,7 +112,7 @@ public class PostTests extends Base{
         given().spec(RequestSpecifications.useJWTAuthentication())
                 .body(testPost)
                 .when()
-                .put("/v1/post/" + postId + 32)
+                .put("/v1/post/" + (postId * invalidId))
                 .then()
                 .log().all()
                 .statusCode(406)
@@ -137,7 +137,7 @@ public class PostTests extends Base{
 
         given().spec(RequestSpecifications.useJWTAuthentication())
                 .when()
-                .delete("/v1/post/" + postId + 52)
+                .delete("/v1/post/" + (postId * invalidId))
                 .then()
                 .log().all()
                 .statusCode(406)
